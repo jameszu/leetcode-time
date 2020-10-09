@@ -25,4 +25,5 @@ The input tree is guaranteed to be a binary search tree.
 ### Idea
 Interesting question. We can use either recursion or while loop<br>
 for serialize we can do normal preorder traversal. If node is not empty, append node val to list, then call encode left and right. Else add a null value into the list. <br>
-for deserialize, we can use iterator or for loop. For each element in the list/string, we see if its the null value, if so we just return none, otherwise we set a treenode at the val and expand left and right nodes.
+for deserialize, we can use iterator or for loop. For each element in the list/string, we see if its the null value, if so we just return none, otherwise we set a treenode at the val and expand left and right nodes.<br>
+There are also many other solutions. 
