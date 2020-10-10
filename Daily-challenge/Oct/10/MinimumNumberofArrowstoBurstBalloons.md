@@ -43,3 +43,6 @@ We can just think the ending part. We sort the array by their ending for the sak
 Then we just need a while loop to check if the value of cur_starting is less than the arr[i][0], the first value of the ith element. <br>
 By doing so we make know two bar/element will not overlap so we add an arrow and replace the cur_start. <br>
 Otherwise we just need simply skip the current i. 
+
+-----
+Interesting it count as greedy algorithm
