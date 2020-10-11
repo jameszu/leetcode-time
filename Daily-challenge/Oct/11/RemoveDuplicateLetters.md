@@ -24,3 +24,4 @@ interesting stack problem<br>
 We need a hashmap that have the letter as the key and the index number as the value. <br>
 Then we loop through the letters in the string, check if its in the stack, if so just skip. Otherwise check the value of the letter and the index of the letter using stack. <br>
 So two conditions for updating the stack: 1 being the current letter has to be smaller than the last letter in the stack. 2 being the current index smaller than the last letter index value in the hashmap we created. <br>
+For condition 1, it means there will be a letter that is smaller than the last letter in the stack. Combine with condition 2 we get the last letter in the stack is useless coz the current letter is smaller as well as int he hashmap theres a bigger index waiting. Hence we can just pop out the last letter. THen we just append the current letter to the stack
