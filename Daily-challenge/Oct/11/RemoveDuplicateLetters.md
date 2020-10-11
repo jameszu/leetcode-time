@@ -1,0 +1,26 @@
+Given a string s, remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.
+
+Note: This question is the same as 1081: https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
+
+ 
+
+Example 1:
+
+Input: s = "bcabc"
+Output: "abc"
+Example 2:
+
+Input: s = "cbacdcbc"
+Output: "acdb"
+ 
+
+Constraints:
+
+1 <= s.length <= 104
+s consists of lowercase English letters.
+-----------------------------------------
+### Idea
+interesting stack problem<br>
+We need a hashmap that have the letter as the key and the index number as the value. <br>
+Then we loop through the letters in the string, check if its in the stack, if so just skip. Otherwise check the value of the letter and the index of the letter using stack. <br>
+So two conditions for updating the stack: 1 being the current letter has to be smaller than the last letter in the stack. 2 being the current index smaller than the last letter index value in the hashmap we created. <br>
