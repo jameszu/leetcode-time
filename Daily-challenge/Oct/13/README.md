@@ -25,6 +25,49 @@ Constraints:
 
 The number of nodes in the list is in the range [0, 5 * 104].
 -105 <= Node.val <= 105<br>
-
+[![Build Status](https://dev.azure.com/msa-devops-2020-james/msa-devops-2020-james/_apis/build/status/jameszu.msa-devops-2020?branchName=master)](https://dev.azure.com/msa-devops-2020-james/msa-devops-2020-james/_build/latest?definitionId=1&branchName=master)
 ---
 ## Idea
+Uh ill do it next time, too many assignments
+
+## Code
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def sortList(self, head):
+        if not head or not head.next:
+            return head
+        fast, slow = head.next, head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        start = slow.next
+        slow.next = None
+        l, r = self.sortList(head), self.sortList(start)
+        return self.merge(l, r)
+        
+        
+    def merge(self, l, r):
+        if not l or not r:
+            return l or r
+        if l.val > r.val:
+            l, r = r, l
+        # get the return node "head"
+        head = pre = l
+        l = l.next
+        while l and r:
+            if l.val < r.val:
+                pre.next = l
+                l = l.next
+            else:
+                pre.next = r
+                r = r.next
+            pre = pre.next
+        # l and r at least one is None
+        pre.next = l or r
+        return head
+```
