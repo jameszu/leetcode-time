@@ -28,4 +28,29 @@ Constraints:
 0 <= nums[i] <= 1000
 
 ## Idea
-Ahh i dont wanna do it.
+Ahh i dont wanna do it.<br>
+Okay it feels like dp 
+yes it is dp<br>
+Basically two cases and get max<br>
+
+
+## Code
+```python
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        def idk(nums, lo, hi):
+            yes, no = 0, 0
+            for i in range(lo, hi):
+                num = nums[i]
+                yes, no = no + num, max(yes, no)
+            return max(yes, no)
+
+        
+        if not nums:
+            return 0
+        elif len(nums) == 1:
+            return nums[0]
+        else:
+            n = len(nums)
+            return max(idk(nums, 1, n), idk(nums, 0, n-1))
+```
