@@ -25,7 +25,7 @@ Constraints:
 
 The number of nodes in the list is in the range [0, 5 * 104].
 -105 <= Node.val <= 105<br>
-[![Build Status](https://dev.azure.com/msa-devops-2020-james/msa-devops-2020-james/_apis/build/status/jameszu.msa-devops-2020?branchName=master)](https://dev.azure.com/msa-devops-2020-james/msa-devops-2020-james/_build/latest?definitionId=1&branchName=master)
+
 ---
 ## Idea
 Uh ill do it next time, too many assignments
