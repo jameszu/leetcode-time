@@ -33,9 +33,17 @@ Constraints:
 0 <= query_glass <= query_row < 100<br>
 
 ## Idea
-Blank rn
+Orignal idea is about pasca triangles, but turned out cannot be solved that easily. <br>
+So just play around with dp and get the result/
 
 ## Code
 ```python
-
+class Solution:
+    def champagneTower(self, poured, query_row, query_glass):
+        res = [poured] + [0] * query_row
+        for row in range(1, query_row + 1):
+            for i in range(row, -1, -1):
+                res[i] = max(res[i] - 1, 0) / 2.0 + max(res[i - 1] - 1, 0) / 2.0
+        return min(res[query_glass], 1)
+        
 ```
