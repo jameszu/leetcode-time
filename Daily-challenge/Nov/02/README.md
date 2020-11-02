@@ -1,45 +1,30 @@
-# Convert Binary Number in a Linked List to Integer
+# Insertion Sort List
 
-Solution
-Given head which is a reference node to a singly-linked list. The value of each node in the linked list is either 0 or 1. The linked list holds the binary representation of a number.
 
-Return the decimal value of the number in the linked list.
+Sort a linked list using insertion sort.
 
+
+A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.
+With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list
  
+
+Algorithm of Insertion Sort:
+
+Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.
+At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.
+It repeats until no input elements remain.
 
 Example 1:
 
-
-Input: head = [1,0,1]
-Output: 5
-Explanation: (101) in base 2 = (5) in base 10
+Input: 4->2->1->3
+Output: 1->2->3->4
 Example 2:
 
-Input: head = [0]
-Output: 0
-Example 3:
-
-Input: head = [1]
-Output: 1
-Example 4:
-
-Input: head = [1,0,0,1,0,0,1,1,1,0,0,0,0,0,0]
-Output: 18880
-Example 5:
-
-Input: head = [0,0]
-Output: 0
- 
-
-Constraints:
-
-The Linked List is not empty.
-Number of nodes will not exceed 30.
-Each node's value is either 0 or 1.<br>
+Input: -1->5->3->4->0
+Output: -1->0->3->4->5 <br>
 
 ## Idea
-Just do while loop and convert to decimal
-
+two ways, one is to use a list and cheat, or we can use standard while loop and extra space for the dummy nodes and etc.
 ## Code
 ```python
 # Definition for singly-linked list.
@@ -48,11 +33,20 @@ Just do while loop and convert to decimal
 #         self.val = val
 #         self.next = next
 class Solution:
-    def getDecimalValue(self, head: ListNode) -> int:
-        string = ""
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        dum = ListNode(0)
+        prev = dum
+        
         while head:
-            string += str(head.val)
-            head = head.next
-        # print(string)
-        return int(string, 2)
+            temp = head.next
+            if prev.val >= head.val:
+                prev = dum
+            while prev.next and prev.next.val < head.val:
+                prev = prev.next
+                
+            head.next = prev.next
+            prev.next = head
+            head = temp
+        return dum.next
+        
 ```
