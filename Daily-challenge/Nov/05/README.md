@@ -34,8 +34,18 @@ Constraints:
 1 <= position.length <= 100
 1 <= position[i] <= 10^9<br>
 ## Idea
-
+It is really intestring, it is not a good question. THere is a very very simple solution but u need to be really abstract
 ## Code
 ```python
-
+class Solution:
+    def minCostToMoveChips(self, position: List[int]) -> int:
+        eve = 0
+        odd = 0
+        for i in position:
+            if i % 2 == 0:
+                eve += 1
+            else:
+                odd += 1
+                
+        return min(eve, odd)
 ```
