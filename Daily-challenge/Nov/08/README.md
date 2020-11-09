@@ -44,5 +44,26 @@ The number of nodes in the tree is in the range [0, 104].
 
 ## Code
 ```python
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTilt(self, root: TreeNode) -> int:
+        
+        def value(node):
+            if not node:
+                return 0
+            
+            left = value(node.left)
+            right = value(node.right)
+            tilt = abs(left-right)
+            self.tilt += tilt
+            return left + right + node.val
+        self.tilt = 0
+        value(root)
+        
+        return self.tilt
 ```
