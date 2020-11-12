@@ -26,4 +26,24 @@ Output: 3
 Constraints:
 
 The number of nodes in the tree is in the range [2, 5000].
-0 <= Node.val <= 105
+0 <= Node.val <= 105<br>
+
+## Idea
+
+## Code
+```python
+class Solution(object):
+    def flipAndInvertImage(self, A):
+        result = []
+        for row in A:
+            result.append(list(map(lambda x: 0 if x == 1 else 1, row[::-1])))
+        return result
+```
+<!-- 
+var seq1 = new [] { "jumps", "over", "the", "lazy", "dog" };
+		var seq2 = new [] { "the", "quick", "brown", "fox" };
+		var res = seq1.SelectMany(n1 =>
+								 	seq2.Where (n2 => n1.Length == n2.Length)
+								  	.DefaultIfEmpty ()
+								  	.Select (n2 => (n1, n2)))
+									.Count (); -->

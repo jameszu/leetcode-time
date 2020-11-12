@@ -1,12 +1,6 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class Solution:
-    def getDecimalValue(self, head: ListNode) -> int:
-        ans = ''
-        while head:
-            ans += str(head.val)
-            head = head.next
-        return int(ans, 2)
+class Solution(object):
+    def flipAndInvertImage(self, A):
+        result = []
+        for row in A:
+            result.append(list(map(lambda x: 0 if x == 1 else 1, row[::-1])))
+        return result
