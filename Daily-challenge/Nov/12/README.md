@@ -1,52 +1,42 @@
-# Populating Next Right Pointers in Each Node
-You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
+# Permutations II
 
-struct Node {
-  int val;
-  Node *left;
-  Node *right;
-  Node *next;
-}
-Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+Solution
+Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.
 
-Initially, all next pointers are set to NULL.
-
- 
-
-Follow up:
-
-You may only use constant extra space.
-Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
  
 
 Example 1:
 
+Input: nums = [1,1,2]
+Output:
+[[1,1,2],
+ [1,2,1],
+ [2,1,1]]
+Example 2:
 
-
-Input: root = [1,2,3,4,5,6,7]
-Output: [1,#,2,3,#,4,5,6,7,#]
-Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
  
 
 Constraints:
 
-The number of nodes in the given tree is less than 4096.
--1000 <= node.val <= 1000<br>
+1 <= nums.length <= 8
+-10 <= nums[i] <= 10 <br>
 
 ## Idea
 
 ## Code
 ```python
 class Solution:
-    def validSquare(self, p1, p2, p3, p4):
-        if p1==p2==p3==p4:return False
-        def dist(x,y):
-            return (x[0]-y[0])**2+(x[1]-y[1])**2
-        ls=[dist(p1,p2),dist(p1,p3),dist(p1,p4),dist(p2,p3),dist(p2,p4),dist(p3,p4)]
-        ls.sort()
-        if ls[0]==ls[1]==ls[2]==ls[3]:
-            if ls[4]==ls[5]:
-                return True
-        return False
+    def permuteUnique(self, nums):
+        ans = [[]]
+        for n in nums:
+            new_ans = []
+            for l in ans:
+                for i in range(len(l)+1):
+                    new_ans.append(l[:i]+[n]+l[i:])
+                    if i<len(l) and l[i]==n: break             
+            ans = new_ans
+        return ans
 ```
  

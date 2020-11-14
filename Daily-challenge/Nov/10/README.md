@@ -1,36 +1,38 @@
-# Valid Square
+# Flipping an Image
 
 Solution
-Given the coordinates of four points in 2D space, return whether the four points could construct a square.
+Given a binary matrix A, we want to flip the image horizontally, then invert it, and return the resulting image.
 
-The coordinate (x,y) of a point is represented by an integer array with two integers.
+To flip an image horizontally means that each row of the image is reversed.  For example, flipping [1, 1, 0] horizontally results in [0, 1, 1].
 
-Example:
+To invert an image means that each 0 is replaced by 1, and each 1 is replaced by 0. For example, inverting [0, 1, 1] results in [1, 0, 0].
 
-Input: p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]
-Output: True
- 
+Example 1:
 
-Note:
+Input: [[1,1,0],[1,0,1],[0,0,0]]
+Output: [[1,0,0],[0,1,0],[1,1,1]]
+Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
+Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+Example 2:
 
-All the input integers are in the range [-10000, 10000].
-A valid square has four equal sides with positive length and four equal angles (90-degree angles).
-Input points have no order.<br>
+Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
+Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+Notes:
+
+1 <= A.length = A[0].length <= 20
+0 <= A[i][j] <= 1<br>
 
 ## Idea
 
 ## Code
 ```python
-class Solution:
-    def validSquare(self, p1, p2, p3, p4):
-        if p1==p2==p3==p4:return False
-        def dist(x,y):
-            return (x[0]-y[0])**2+(x[1]-y[1])**2
-        ls=[dist(p1,p2),dist(p1,p3),dist(p1,p4),dist(p2,p3),dist(p2,p4),dist(p3,p4)]
-        ls.sort()
-        if ls[0]==ls[1]==ls[2]==ls[3]:
-            if ls[4]==ls[5]:
-                return True
-        return False
+class Solution(object):
+    def flipAndInvertImage(self, A):
+        result = []
+        for row in A:
+            result.append(list(map(lambda x: 0 if x == 1 else 1, row[::-1])))
+        return result
 ```
  
