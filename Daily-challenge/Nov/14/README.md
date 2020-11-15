@@ -1,54 +1,31 @@
-# Populating Next Right Pointers in Each Node
+# Poor Pigs
 
 Solution
-You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
+There are 1000 buckets, one and only one of them is poisonous, while the rest are filled with water. They all look identical. If a pig drinks the poison it will die within 15 minutes. What is the minimum amount of pigs you need to figure out which bucket is poisonous within one hour?
 
-struct Node {
-  int val;
-  Node *left;
-  Node *right;
-  Node *next;
-}
-Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
-
-Initially, all next pointers are set to NULL.
+Answer this question, and write an algorithm for the general case.
 
  
 
-Follow up:
+General case:
 
-You may only use constant extra space.
-Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
+If there are n buckets and a pig drinking poison will die within m minutes, how many pigs (x) you need to figure out the poisonous bucket within p minutes? There is exactly one bucket with poison.
+
  
 
-Example 1:
+Note:
 
-
-
-Input: root = [1,2,3,4,5,6,7]
-Output: [1,#,2,3,#,4,5,6,7,#]
-Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
- 
-
-Constraints:
-
-The number of nodes in the given tree is less than 4096.
--1000 <= node.val <= 1000<br>
+A pig can be allowed to drink simultaneously on as many buckets as one would like, and the feeding takes no time.
+After a pig has instantly finished drinking buckets, there has to be a cool down time of m minutes. During this time, only observation is allowed and no feedings at all.
+Any given bucket can be sampled an infinite number of times (by an unlimited number of pigs).<br>
 
 ## Idea
 
 ## Code
 ```python
 class Solution:
-    def validSquare(self, p1, p2, p3, p4):
-        if p1==p2==p3==p4:return False
-        def dist(x,y):
-            return (x[0]-y[0])**2+(x[1]-y[1])**2
-        ls=[dist(p1,p2),dist(p1,p3),dist(p1,p4),dist(p2,p3),dist(p2,p4),dist(p3,p4)]
-        ls.sort()
-        if ls[0]==ls[1]==ls[2]==ls[3]:
-            if ls[4]==ls[5]:
-                return True
-        return False
+    def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:
+                return ceil(log(buckets)/log(minutesToTest//minutesToDie + 1))
+
 ```
  
