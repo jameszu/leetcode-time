@@ -1,32 +1,22 @@
-# Longest Mountain in Array
-Let's call any (contiguous) subarray B (of A) a mountain if the following properties hold:
+# Mirror Reflection
+There is a special square room with mirrors on each of the four walls.  Except for the southwest corner, there are receptors on each of the remaining corners, numbered 0, 1, and 2.
 
-B.length >= 3
-There exists some 0 < i < B.length - 1 such that B[0] < B[1] < ... B[i-1] < B[i] > B[i+1] > ... > B[B.length - 1]
-(Note that B could be any subarray of A, including the entire array A.)
+The square room has walls of length p, and a laser ray from the southwest corner first meets the east wall at a distance q from the 0th receptor.
 
-Given an array A of integers, return the length of the longest mountain. 
+Return the number of the receptor that the ray meets first.  (It is guaranteed that the ray will meet a receptor eventually.)
 
-Return 0 if there is no mountain.
+ 
 
-Example 1:
+Example 1:<br>
+![img](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/18/reflection.png)
+Input: p = 2, q = 1
+Output: 2
+Explanation: The ray meets receptor 2 the first time it gets reflected back to the left wall.
 
-Input: [2,1,4,7,3,2,5]
-Output: 5
-Explanation: The largest mountain is [1,4,7,3,2] which has length 5.
-Example 2:
-
-Input: [2,2,2]
-Output: 0
-Explanation: There is no mountain.
 Note:
 
-0 <= A.length <= 10000
-0 <= A[i] <= 10000
-Follow up:
-
-Can you solve it using only one pass?
-Can you solve it in O(1) space?<br>
+1 <= p <= 1000
+0 <= q <= p<br>
 
 ## Idea
 
