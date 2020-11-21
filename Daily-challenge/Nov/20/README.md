@@ -23,17 +23,9 @@ Just do while loop and convert to decimal
 
 ## Code
 ```python
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def getDecimalValue(self, head: ListNode) -> int:
-        string = ""
-        while head:
-            string += str(head.val)
-            head = head.next
-        # print(string)
-        return int(string, 2)
+    def search(self, nums: List[int], target: int) -> bool:
+        if target in nums:
+            return True
+        return False
 ```

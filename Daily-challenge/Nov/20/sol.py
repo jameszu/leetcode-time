@@ -1,12 +1,5 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def getDecimalValue(self, head: ListNode) -> int:
-        ans = ''
-        while head:
-            ans += str(head.val)
-            head = head.next
-        return int(ans, 2)
+    def search(self, nums: List[int], target: int) -> bool:
+        if target in nums:
+            return True
+        return False
