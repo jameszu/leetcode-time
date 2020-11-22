@@ -40,17 +40,15 @@ Just do while loop and convert to decimal
 
 ## Code
 ```python
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def getDecimalValue(self, head: ListNode) -> int:
-        string = ""
-        while head:
-            string += str(head.val)
-            head = head.next
-        # print(string)
-        return int(string, 2)
+    def atMostNGivenDigitSet(self, D: List[str], N: int) -> int:
+        N = str(N)
+        n = len(N)
+        res = sum(len(D) ** i for i in range(1, n))
+        i = 0
+        while i < len(N):
+            res += sum(c < N[i] for c in D) * (len(D) ** (n - i - 1))
+            if N[i] not in D: break
+            i += 1
+        return res + (i == n)
 ```
