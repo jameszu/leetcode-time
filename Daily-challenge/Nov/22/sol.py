@@ -1,11 +1,13 @@
 class Solution:
-    def atMostNGivenDigitSet(self, D: List[str], N: int) -> int:
-        N = str(N)
-        n = len(N)
-        res = sum(len(D) ** i for i in range(1, n))
-        i = 0
-        while i < len(N):
-            res += sum(c < N[i] for c in D) * (len(D) ** (n - i - 1))
-            if N[i] not in D: break
-            i += 1
-        return res + (i == n)
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        lst = {"a":".-","b":"-...","c":"-.-.","d":"-..","e":".","f":"..-.","g":"--.","h":"....","i":"..","j":".---","k":"-.-","l":".-..","m":"--","n":"-.","o":"---","p":".--.","q":"--.-","r":".-.","s":"...","t":"-","u":"..-","v":"...-","w":".--","x":"-..-","y":"-.--","z":"--.."}
+        final_lst = []
+        for word in words:
+            temp = ""
+            for letter in word:
+                temp += lst[letter]
+            
+            final_lst += [temp]
+            
+        res = len(set(final_lst))
+        return res
