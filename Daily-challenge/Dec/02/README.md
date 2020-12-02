@@ -1,27 +1,19 @@
-# Insertion Sort List
+# Linked List Random Node
+Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.
 
+Follow up:
+What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?
 
-Sort a linked list using insertion sort.
+Example:
 
+// Init a singly linked list [1,2,3].
+ListNode head = new ListNode(1);
+head.next = new ListNode(2);
+head.next.next = new ListNode(3);
+Solution solution = new Solution(head);
 
-A graphical example of insertion sort. The partial sorted list (black) initially contains only the first element in the list.
-With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list
- 
-
-Algorithm of Insertion Sort:
-
-Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.
-At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.
-It repeats until no input elements remain.
-
-Example 1:
-
-Input: 4->2->1->3
-Output: 1->2->3->4
-Example 2:
-
-Input: -1->5->3->4->0
-Output: -1->0->3->4->5 <br>
+// getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
+solution.getRandom(); <br>
 
 ## Idea
 two ways, one is to use a list and cheat, or we can use standard while loop and extra space for the dummy nodes and etc.
