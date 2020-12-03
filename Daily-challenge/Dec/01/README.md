@@ -34,17 +34,16 @@ Just do while loop and convert to decimal
 
 ## Code
 ```python
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
-#         self.next = next
+#         self.left = left
+#         self.right = right
 class Solution:
-    def getDecimalValue(self, head: ListNode) -> int:
-        string = ""
-        while head:
-            string += str(head.val)
-            head = head.next
-        # print(string)
-        return int(string, 2)
+    def maxDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
 ```

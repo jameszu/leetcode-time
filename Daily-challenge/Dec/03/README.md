@@ -1,40 +1,24 @@
-# Consecutive Characters
-
-Solution
-Given a string s, the power of the string is the maximum length of a non-empty substring that contains only one unique character.
-
-Return the power of the string.
+# Increasing Order Search Tree
+Given the root of a binary search tree, rearrange the tree in in-order so that the leftmost node in the tree is now the root of the tree, and every node has no left child and only one right child.
 
  
 
 Example 1:
 
-Input: s = "leetcode"
-Output: 2
-Explanation: The substring "ee" is of length 2 with the character 'e' only.
+
+Input: root = [5,3,6,2,4,null,8,1,null,null,null,7,9]
+Output: [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]
 Example 2:
 
-Input: s = "abbcccddddeeeeedcba"
-Output: 5
-Explanation: The substring "eeeee" is of length 5 with the character 'e' only.
-Example 3:
 
-Input: s = "triplepillooooow"
-Output: 5
-Example 4:
-
-Input: s = "hooraaaaaaaaaaay"
-Output: 11
-Example 5:
-
-Input: s = "tourist"
-Output: 1
+Input: root = [5,1,7]
+Output: [1,null,5,null,7]
  
 
 Constraints:
 
-1 <= s.length <= 500
-s contains only lowercase English letters. <br>
+The number of nodes in the given tree will be in the range [1, 100].
+0 <= Node.val <= 1000 <br>
 
 ## Idea
 Just a while loop or for loop is fine
@@ -42,19 +26,23 @@ Just a while loop or for loop is fine
 ## Code
 
 ```python
-class Solution:
-    def maxPower(self, s: str) -> int:
-        i = 1
-        n = len(s)
-        count = 1
-        res = 1
-        while i < n:
-            if s[i] == s[i-1]:
-                count += 1
-                res = max(res, count)
-            else:
-                # res = max(res, count)
-                count = 1
-            i += 1
+# if this null node was a left child, tail is its parent
+        # if this null node was a right child, tail is its parent's parent
+        if not root: return tail
+
+        # recursive call, traversing left while passing in the current node as tail
+        res = self.increasingBST(root.left, root)
+
+        # we don't want the current node to have a left child, only a single right child
+        root.left = None
+
+        # we set the current node's right child to be tail
+        # what is tail? this part is important
+        # if the current node is a left child, tail will be its parent
+        # else if the current node is a right child, tail will be its parent's parent
+        root.right = self.increasingBST(root.right, tail)
+
+        # throughout the whole algorithm, res is the leaf of the leftmost path in the original tree
+        # its the smallest node and thus will be the root of the modified tree
         return res
 ```
