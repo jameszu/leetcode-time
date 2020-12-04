@@ -1,45 +1,42 @@
-# Minimum Height Trees
+# The kth Factor of n
+Given two positive integers n and k.
 
-Solution
-A tree is an undirected graph in which any two vertices are connected by exactly one path. In other words, any connected graph without simple cycles is a tree.
+A factor of an integer n is defined as an integer i where n % i == 0.
 
-Given a tree of n nodes labelled from 0 to n - 1, and an array of n - 1 edges where edges[i] = [ai, bi] indicates that there is an undirected edge between the two nodes ai and bi in the tree, you can choose any node of the tree as the root. When you select a node x as the root, the result tree has height h. Among all possible rooted trees, those with minimum height (i.e. min(h))  are called minimum height trees (MHTs).
-
-Return a list of all MHTs' root labels. You can return the answer in any order.
-
-The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
+Consider a list of all factors of n sorted in ascending order, return the kth factor in this list or return -1 if n has less than k factors.
 
  
 
 Example 1:
 
-
-Input: n = 4, edges = [[1,0],[1,2],[1,3]]
-Output: [1]
-Explanation: As shown, the height of the tree is 1 when the root is the node with label 1 which is the only MHT.
+Input: n = 12, k = 3
+Output: 3
+Explanation: Factors list is [1, 2, 3, 4, 6, 12], the 3rd factor is 3.
 Example 2:
 
-
-Input: n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
-Output: [3,4]
+Input: n = 7, k = 2
+Output: 7
+Explanation: Factors list is [1, 7], the 2nd factor is 7.
 Example 3:
 
-Input: n = 1, edges = []
-Output: [0]
+Input: n = 4, k = 4
+Output: -1
+Explanation: Factors list is [1, 2, 4], there is only 3 factors. We should return -1.
 Example 4:
 
-Input: n = 2, edges = [[0,1]]
-Output: [0,1]
+Input: n = 1, k = 1
+Output: 1
+Explanation: Factors list is [1], the 1st factor is 1.
+Example 5:
+
+Input: n = 1000, k = 3
+Output: 4
+Explanation: Factors list is [1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000].
  
 
 Constraints:
 
-1 <= n <= 2 * 104
-edges.length == n - 1
-0 <= ai, bi < n
-ai != bi
-All the pairs (ai, bi) are distinct.
-The given input is guaranteed to be a tree and there will be no repeated edges. <br>
+1 <= k <= n <= 1000 <br>
 
 ## Idea
 It is a really really hard one for me
@@ -47,19 +44,13 @@ It is a really really hard one for me
 ## Code
 ```python
 class Solution:
-    def findMinHeightTrees(self, n, edges):
-        neighbors = collections.defaultdict(set)
-        for v, w in edges:
-            neighbors[v].add(w)
-            neighbors[w].add(v)
-        def maxpath(v, visited):
-            visited.add(v)
-            paths = [maxpath(w, visited) for w in neighbors[v] if w not in visited]
-            path = max(paths or [[]], key=len)
-            path.append(v)
-            return path
-        path = maxpath(0, set())
-        path = maxpath(path[0], set())
-        m = len(path)
-        return path[(m-1)//2:m//2+1]
+    def kthFactor(self, n: int, k: int) -> int:
+        lst = []
+        
+        for i in range(1, n+1):
+            if n % i == 0:
+                lst += [i]
+        if len(lst) < k:
+            return -1
+        return lst[k-1]
 ```

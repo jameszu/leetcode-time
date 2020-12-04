@@ -1,16 +1,10 @@
 class Solution:
-    def findMinHeightTrees(self, n, edges):
-        neighbors = collections.defaultdict(set)
-        for v, w in edges:
-            neighbors[v].add(w)
-            neighbors[w].add(v)
-        def maxpath(v, visited):
-            visited.add(v)
-            paths = [maxpath(w, visited) for w in neighbors[v] if w not in visited]
-            path = max(paths or [[]], key=len)
-            path.append(v)
-            return path
-        path = maxpath(0, set())
-        path = maxpath(path[0], set())
-        m = len(path)
-        return path[(m-1)//2:m//2+1]
+    def kthFactor(self, n: int, k: int) -> int:
+        lst = []
+        
+        for i in range(1, n+1):
+            if n % i == 0:
+                lst += [i]
+        if len(lst) < k:
+            return -1
+        return lst[k-1]
