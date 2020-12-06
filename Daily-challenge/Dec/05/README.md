@@ -1,51 +1,51 @@
-# Minimum Cost to Move Chips to The Same Position
-We have n chips, where the position of the ith chip is position[i].
+# Can Place Flowers
 
-We need to move all the chips to the same position. In one step, we can change the position of the ith chip from position[i] to:
+Solution
+You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
 
-position[i] + 2 or position[i] - 2 with cost = 0.
-position[i] + 1 or position[i] - 1 with cost = 1.
-Return the minimum cost needed to move all the chips to the same position.
+Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule.
 
  
 
 Example 1:
 
-
-Input: position = [1,2,3]
-Output: 1
-Explanation: First step: Move the chip at position 3 to position 1 with cost = 0.
-Second step: Move the chip at position 2 to position 1 with cost = 1.
-Total cost is 1.
+Input: flowerbed = [1,0,0,0,1], n = 1
+Output: true
 Example 2:
 
-
-Input: position = [2,2,2,3,3]
-Output: 2
-Explanation: We can move the two chips at poistion 3 to position 2. Each move has cost = 1. The total cost = 2.
-Example 3:
-
-Input: position = [1,1000000000]
-Output: 1
+Input: flowerbed = [1,0,0,0,1], n = 2
+Output: false
  
 
 Constraints:
 
-1 <= position.length <= 100
-1 <= position[i] <= 10^9<br>
+1 <= flowerbed.length <= 2 * 104
+flowerbed[i] is 0 or 1.
+There are no two adjacent flowers in flowerbed.
+0 <= n <= flowerbed.length<br>
 ## Idea
 It is really intestring, it is not a good question. THere is a very very simple solution but u need to be really abstract
 ## Code
 ```python
 class Solution:
-    def minCostToMoveChips(self, position: List[int]) -> int:
-        eve = 0
-        odd = 0
-        for i in position:
-            if i % 2 == 0:
-                eve += 1
-            else:
-                odd += 1
-                
-        return min(eve, odd)
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        i = 0
+        lenz = len(flowerbed)
+        count = 0
+        
+        while i < lenz and count < n:
+            if flowerbed[i] == 0:
+                if i == lenz - 1: 
+                    nex = 0 
+                else: nex = flowerbed[i+1]
+                if i == 0: 
+                    prev = 0 
+                else: 
+                    prev = flowerbed[i-1]
+                if nex == 0 and prev == 0:
+                    flowerbed[i] = 1
+                    count += 1
+                    
+            i += 1
+        return count == n
 ```
