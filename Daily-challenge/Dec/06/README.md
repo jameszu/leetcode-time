@@ -1,33 +1,37 @@
-# Find the Smallest Divisor Given a Threshold
-Given an array of integers nums and an integer threshold, we will choose a positive integer divisor and divide all the array by it and sum the result of the division. Find the smallest divisor such that the result mentioned above is less than or equal to threshold.
+# Populating Next Right Pointers in Each Node II
+Given a binary tree
 
-Each result of division is rounded to the nearest integer greater than or equal to that element. (For example: 7/3 = 3 and 10/2 = 5).
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
 
-It is guaranteed that there will be an answer.
+Initially, all next pointers are set to NULL.
 
+ 
+
+Follow up:
+
+You may only use constant extra space.
+Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
  
 
 Example 1:
 
-Input: nums = [1,2,5,9], threshold = 6
-Output: 5
-Explanation: We can get a sum to 17 (1+2+5+9) if the divisor is 1. 
-If the divisor is 4 we can get a sum to 7 (1+1+2+3) and if the divisor is 5 the sum will be 5 (1+1+1+2). 
-Example 2:
 
-Input: nums = [2,3,5,7,11], threshold = 11
-Output: 3
-Example 3:
 
-Input: nums = [19], threshold = 5
-Output: 4
+Input: root = [1,2,3,4,5,null,7]
+Output: [1,#,2,3,#,4,5,7,#]
+Explanation: Given the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
  
 
 Constraints:
 
-1 <= nums.length <= 5 * 10^4
-1 <= nums[i] <= 10^6
-nums.length <= threshold <= 10^6 <br>
+The number of nodes in the given tree is less than 6000.
+-100 <= node.val <= 100 <br>
 
 ## Idea
 yea ill ttyl
