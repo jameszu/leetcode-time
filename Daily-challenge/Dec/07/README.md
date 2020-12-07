@@ -1,15 +1,22 @@
-# Add Two Numbers II
-You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+# Spiral Matrix II
+Given a positive integer n, generate an n x n matrix filled with elements from 1 to n2 in spiral order.
 
-You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+![idk](https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg)
 
-Follow up:
-What if you cannot modify the input lists? In other words, reversing the lists is not allowed.
+Example 1:
 
-Example:
 
-Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
-Output: 7 -> 8 -> 0 -> 7<br>
+Input: n = 3
+Output: [[1,2,3],[8,9,4],[7,6,5]]
+Example 2:
+
+Input: n = 1
+Output: [[1]]
+ 
+
+Constraints:
+
+1 <= n <= 20<br>
 
 ## Idea
 

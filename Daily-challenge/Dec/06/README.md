@@ -39,30 +39,31 @@ yea ill ttyl
 ## Code
 ```python
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
 class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        s1, s2 = [], []
-        while l1:
-            s1.append(l1.val)
-            l1 = l1.next
-        
-        while l2:
-            s2.append(l2.val)
-            l2 = l2.next
-            
-        carry = 0
-        head = ListNode(0)
-        while s1 or s2 or carry:
-            if s1:
-                carry += s1.pop()
-            if s2:
-                carry += s2.pop()
-            carry, val = divmod(carry, 10)
-            head.next, head.next.next = ListNode(val), head.next
-        return head.next
+    def connect(self, root: 'Node') -> 'Node':
+        node = root
+        while node:
+            cur = dummy = Node(0)
+            while node:
+                if node.left:
+                    cur.next = node.left
+                    cur = cur.next
+                    
+                if node.right:
+                    cur.next = node.right
+                    cur = cur.next
+                    
+                node = node.next
+            node = dummy.next
+        return root
 ```
