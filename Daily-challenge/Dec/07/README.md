@@ -22,31 +22,16 @@ Constraints:
 
 ## Code
 ```python
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        s1, s2 = [], []
-        while l1:
-            s1.append(l1.val)
-            l1 = l1.next
-        
-        while l2:
-            s2.append(l2.val)
-            l2 = l2.next
-            
-        carry = 0
-        head = ListNode(0)
-        while s1 or s2 or carry:
-            if s1:
-                carry += s1.pop()
-            if s2:
-                carry += s2.pop()
-            carry, val = divmod(carry, 10)
-            head.next, head.next.next = ListNode(val), head.next
-        return head.next07
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        A = [[0] * n for _ in range(n)]
+        i, j, di, dj = 0, 0, 0, 1
+        for k in range(n*n):
+            A[i][j] = k + 1
+            if A[(i+di)%n][(j+dj)%n]:
+                di, dj = dj, -di
+            i += di
+            j += dj
+        return A
         
 ```
