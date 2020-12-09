@@ -29,26 +29,19 @@ Constraints:
 
 ## Code
 ```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def findTilt(self, root: TreeNode) -> int:
-        
-        def value(node):
-            if not node:
-                return 0
+    def numPairsDivisibleBy60(self, time: List[int]) -> int:
+       
+        count = 0
+        d = collections.defaultdict(int)
+
             
-            left = value(node.left)
-            right = value(node.right)
-            tilt = abs(left-right)
-            self.tilt += tilt
-            return left + right + node.val
-        self.tilt = 0
-        value(root)
-        
-        return self.tilt
+        for item in time:
+            if item % 60 == 0:
+                count += d[0]
+            else:
+                count += d[60-item%60]
+            d[item%60] += 1
+                
+        return count
 ```

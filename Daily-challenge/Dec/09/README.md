@@ -1,32 +1,47 @@
-# Maximum Difference Between Node and Ancestor
-Given the root of a binary tree, find the maximum value V for which there exist different nodes A and B where V = |A.val - B.val| and A is an ancestor of B.
+#  Binary Search Tree Iterator
+Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST):
 
-A node A is an ancestor of B if either: any child of A is equal to B, or any child of A is an ancestor of B.
+BSTIterator(TreeNode root) Initializes an object of the BSTIterator class. The root of the BST is given as part of the constructor. The pointer should be initialized to a non-existent number smaller than any element in the BST.
+boolean hasNext() Returns true if there exists a number in the traversal to the right of the pointer, otherwise returns false.
+int next() Moves the pointer to the right, then returns the number at the pointer.
+Notice that by initializing the pointer to a non-existent smallest number, the first call to next() will return the smallest element in the BST.
+
+You may assume that next() calls will always be valid. That is, there will be at least a next number in the in-order traversal when next() is called.
 
  
 
 Example 1:
 
 
-Input: root = [8,3,10,1,6,null,14,null,null,4,7,13]
-Output: 7
-Explanation: We have various ancestor-node differences, some of which are given below :
-|8 - 3| = 5
-|3 - 7| = 4
-|8 - 1| = 7
-|10 - 13| = 3
-Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.
-Example 2:
+Input
+["BSTIterator", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext", "next", "hasNext"]
+[[[7, 3, 15, null, null, 9, 20]], [], [], [], [], [], [], [], [], []]
+Output
+[null, 3, 7, true, 9, true, 15, true, 20, false]
 
-
-Input: root = [1,null,2,null,0,3]
-Output: 3
+Explanation
+BSTIterator bSTIterator = new BSTIterator([7, 3, 15, null, null, 9, 20]);
+bSTIterator.next();    // return 3
+bSTIterator.next();    // return 7
+bSTIterator.hasNext(); // return True
+bSTIterator.next();    // return 9
+bSTIterator.hasNext(); // return True
+bSTIterator.next();    // return 15
+bSTIterator.hasNext(); // return True
+bSTIterator.next();    // return 20
+bSTIterator.hasNext(); // return False
  
 
 Constraints:
 
-The number of nodes in the tree is in the range [2, 5000].
-0 <= Node.val <= 105<br>
+The number of nodes in the tree is in the range [1, 105].
+0 <= Node.val <= 106
+At most 105 calls will be made to hasNext, and next.
+ 
+
+Follow up:
+
+Could you implement next() and hasNext() to run in average O(1) time and use O(h) memory, where h is the height of the tree?<br>
 
 ## Idea
 
