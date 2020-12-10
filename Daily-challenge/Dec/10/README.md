@@ -1,28 +1,33 @@
-# Flipping an Image
+# Valid Mountain Array
+Given an array of integers arr, return true if and only if it is a valid mountain array.
 
-Solution
-Given a binary matrix A, we want to flip the image horizontally, then invert it, and return the resulting image.
+Recall that arr is a mountain array if and only if:
 
-To flip an image horizontally means that each row of the image is reversed.  For example, flipping [1, 1, 0] horizontally results in [0, 1, 1].
+arr.length >= 3
+There exists some i with 0 < i < arr.length - 1 such that:
+arr[0] < arr[1] < ... < arr[i - 1] < A[i]
+arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
 
-To invert an image means that each 0 is replaced by 1, and each 1 is replaced by 0. For example, inverting [0, 1, 1] results in [1, 0, 0].
+ 
 
 Example 1:
 
-Input: [[1,1,0],[1,0,1],[0,0,0]]
-Output: [[1,0,0],[0,1,0],[1,1,1]]
-Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
-Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+Input: arr = [2,1]
+Output: false
 Example 2:
 
-Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
-Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
-Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
-Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
-Notes:
+Input: arr = [3,5,5]
+Output: false
+Example 3:
 
-1 <= A.length = A[0].length <= 20
-0 <= A[i][j] <= 1<br>
+Input: arr = [0,3,2,1]
+Output: true
+ 
+
+Constraints:
+
+1 <= arr.length <= 104
+0 <= arr[i] <= 104<br>
 
 ## Idea
 

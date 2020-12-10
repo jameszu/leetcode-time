@@ -47,18 +47,35 @@ Could you implement next() and hasNext() to run in average O(1) time and use O(h
 
 ## Code
 ```python
-class Solution(object):
-    def flipAndInvertImage(self, A):
-        result = []
-        for row in A:
-            result.append(list(map(lambda x: 0 if x == 1 else 1, row[::-1])))
-        return result
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class BSTIterator:
+
+    def __init__(self, root):
+        self.stack = []
+        while root:
+            self.stack.append(root)
+            root = root.left
+
+    def hasNext(self):
+        return len(self.stack) > 0
+
+    def next(self):
+        node = self.stack.pop()
+        x = node.right
+        while x:
+            self.stack.append(x)
+            x = x.left
+        return node.val
+        
+
+
+# Your BSTIterator object will be instantiated and called as such:
+# obj = BSTIterator(root)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
 ```
-<!-- 
-var seq1 = new [] { "jumps", "over", "the", "lazy", "dog" };
-		var seq2 = new [] { "the", "quick", "brown", "fox" };
-		var res = seq1.SelectMany(n1 =>
-								 	seq2.Where (n2 => n1.Length == n2.Length)
-								  	.DefaultIfEmpty ()
-								  	.Select (n2 => (n1, n2)))
-									.Count (); -->
