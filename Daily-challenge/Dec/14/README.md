@@ -1,23 +1,24 @@
-# Poor Pigs
+# Palindrome Partitioning
+Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s.
 
-Solution
-There are 1000 buckets, one and only one of them is poisonous, while the rest are filled with water. They all look identical. If a pig drinks the poison it will die within 15 minutes. What is the minimum amount of pigs you need to figure out which bucket is poisonous within one hour?
-
-Answer this question, and write an algorithm for the general case.
+A palindrome string is a string that reads the same backward as forward.
 
  
 
-General case:
+Example 1:
 
-If there are n buckets and a pig drinking poison will die within m minutes, how many pigs (x) you need to figure out the poisonous bucket within p minutes? There is exactly one bucket with poison.
+Input: s = "aab"
+Output: [["a","a","b"],["aa","b"]]
+Example 2:
 
+Input: s = "a"
+Output: [["a"]]
  
 
-Note:
+Constraints:
 
-A pig can be allowed to drink simultaneously on as many buckets as one would like, and the feeding takes no time.
-After a pig has instantly finished drinking buckets, there has to be a cool down time of m minutes. During this time, only observation is allowed and no feedings at all.
-Any given bucket can be sampled an infinite number of times (by an unlimited number of pigs).<br>
+1 <= s.length <= 16
+s contains only lowercase English letters.<br>
 
 ## Idea
 

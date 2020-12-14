@@ -1,37 +1,18 @@
-# Populating Next Right Pointers in Each Node
-You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
+# Burst Balloons
+Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] * nums[i] * nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
 
-struct Node {
-  int val;
-  Node *left;
-  Node *right;
-  Node *next;
-}
-Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+Find the maximum coins you can collect by bursting the balloons wisely.
 
-Initially, all next pointers are set to NULL.
+Note:
 
- 
+You may imagine nums[-1] = nums[n] = 1. They are not real therefore you can not burst them.
+0 ≤ n ≤ 500, 0 ≤ nums[i] ≤ 100
+Example:
 
-Follow up:
-
-You may only use constant extra space.
-Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
- 
-
-Example 1:
-
-
-
-Input: root = [1,2,3,4,5,6,7]
-Output: [1,#,2,3,#,4,5,6,7,#]
-Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
- 
-
-Constraints:
-
-The number of nodes in the given tree is less than 4096.
--1000 <= node.val <= 1000<br>
+Input: [3,1,5,8]
+Output: 167 
+Explanation: nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []
+             coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167<br>
 
 ## Idea
 
