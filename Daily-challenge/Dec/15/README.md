@@ -1,55 +1,39 @@
-# Range Sum of BST
-Given the root node of a binary search tree, return the sum of values of all nodes with a value in the range [low, high].
+# Squares of a Sorted Array
+
+Solution
+Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
 
  
 
 Example 1:
 
-
-Input: root = [10,5,15,3,7,null,18], low = 7, high = 15
-Output: 32
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
 Example 2:
 
-
-Input: root = [10,5,15,3,7,13,18,1,null,6], low = 6, high = 10
-Output: 23
+Input: nums = [-7,-3,2,3,11]
+Output: [4,9,9,49,121]
  
 
 Constraints:
 
-The number of nodes in the tree is in the range [1, 2 * 104].
-1 <= Node.val <= 105
-1 <= low <= high <= 105
-All Node.val are unique.<br>
+1 <= nums.length <= 104
+-104 <= nums[i] <= 104
+nums is sorted in non-decreasing order.<br>
 
 ## Idea
 
 ## Code
 ```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def rangeSumBST(self, root: TreeNode, low: int, high: int) -> int:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        lst = []
         
-        global res
-        res = 0
-        
-        def tran(root):
-            global res
-            if root == None: return
-            # print(root.val)
-            if low <= root.val <= high:
-                res += root.val
-            if low < root.val:
-                tran(root.left)
-            if root.val < high:
-                tran(root.right)
-        tran(root)
-        return res
-
+        for i in nums:
+            lst += [i**2]
+            
+        return sorted(lst)
 ```
  
