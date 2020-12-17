@@ -1,29 +1,20 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def longestMountain(self, A: List[int]) -> int:
-        total = 0
+    def isValidBST(self, root: TreeNode) -> bool:
         
-        length = len(A)
-        if length <= 2:
-            return 0
         
-        pointer = 0
+        def preorder(root, left, right):
+            if not root:
+                return True
+            if not left < root.val < right:
+                return False
+            
+            return (preorder(root.left, left, root.val) and preorder(root.right, root.val, right))
         
-        while pointer <= length-2:
-            base = pointer
-            while pointer + 1 < length and A[pointer] < A[pointer+1]:
-                pointer += 1
+        return preorder(root, float("-inf"), float("inf"))
             
-            if pointer == base:
-                pointer += 1
-                continue
-            
-            peak = pointer
-            while pointer + 1 < length and A[pointer] > A[pointer+1]:
-                pointer += 1
-            
-            if peak == pointer:
-                continue
-                
-            total = max(total, pointer - base + 1)
-            
-        return total
