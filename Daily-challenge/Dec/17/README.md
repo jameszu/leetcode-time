@@ -1,22 +1,24 @@
-# Mirror Reflection
-There is a special square room with mirrors on each of the four walls.  Except for the southwest corner, there are receptors on each of the remaining corners, numbered 0, 1, and 2.
+# 4Sum II
+Given four lists A, B, C, D of integer values, compute how many tuples (i, j, k, l) there are such that A[i] + B[j] + C[k] + D[l] is zero.
 
-The square room has walls of length p, and a laser ray from the southwest corner first meets the east wall at a distance q from the 0th receptor.
+To make problem a bit easier, all A, B, C, D have same length of N where 0 ≤ N ≤ 500. All integers are in the range of -228 to 228 - 1 and the result is guaranteed to be at most 231 - 1.
 
-Return the number of the receptor that the ray meets first.  (It is guaranteed that the ray will meet a receptor eventually.)
+Example:
 
- 
+Input:
+A = [ 1, 2]
+B = [-2,-1]
+C = [-1, 2]
+D = [ 0, 2]
 
-Example 1:<br>
-![img](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/06/18/reflection.png)
-Input: p = 2, q = 1
-Output: 2
-Explanation: The ray meets receptor 2 the first time it gets reflected back to the left wall.
+Output:
+2
 
-Note:
-
-1 <= p <= 1000
-0 <= q <= p<br>
+Explanation:
+The two tuples are:
+1. (0, 0, 0, 1) -> A[0] + B[0] + C[0] + D[1] = 1 + (-2) + (-1) + 2 = 0
+2. (1, 1, 0, 0) -> A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0
+ <br>
 
 ## Idea
 
