@@ -1,13 +1,17 @@
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        if len(intervals) <=1:
-            return intervals
-        intervals.sort(key=lambda key: key[0])
-        i = 0
-        while i < len(intervals)-1:
-            if intervals[i][-1] >= intervals[i+1][0]:
-                intervals[i][-1] = max(intervals[i][-1], intervals[i+1][-1])
-                intervals.pop(i+1)
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        idx = 0
+        lenz = len(nums)
+        temp = temp2 = float('inf')
+        count = 0
+        for idx in range(lenz):
+            if nums[idx] <= temp:
+                temp = nums[idx]
+            elif nums[idx] <= temp2:
+                temp2 = nums[idx]
+                
+            
             else:
-                i += 1
-        return intervals
+                return True
+            
+        return False
