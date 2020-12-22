@@ -1,30 +1,32 @@
-# Unique Morse Code Words
-International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: "a" maps to ".-", "b" maps to "-...", "c" maps to "-.-.", and so on.
+# Balanced Binary Tree
+Given a binary tree, determine if it is height-balanced.
 
-For convenience, the full table for the 26 letters of the English alphabet is given below:
+For this problem, a height-balanced binary tree is defined as:
 
-[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
-Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, "cab" can be written as "-.-..--...", (which is the concatenation "-.-." + ".-" + "-..."). We'll call such a concatenation, the transformation of a word.
+a binary tree in which the left and right subtrees of every node differ in height by no more than 1.
 
-Return the number of different transformations among all words we have.
+ 
 
-Example:
-Input: words = ["gin", "zen", "gig", "msg"]
-Output: 2
-Explanation: 
-The transformation of each word is:
-"gin" -> "--...-."
-"zen" -> "--...-."
-"gig" -> "--...--."
-"msg" -> "--...--."
+Example 1:
 
-There are 2 different transformations, "--...-." and "--...--.".
-Note:
 
-The length of words will be at most 100.
-Each words[i] will have le
-gth in range [1, 12].
-words[i] will only consist of lowercase letters.<br>
+Input: root = [3,9,20,null,null,15,7]
+Output: true
+Example 2:
+
+
+Input: root = [1,2,2,3,3,null,null,4,4]
+Output: false
+Example 3:
+
+Input: root = []
+Output: true
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [0, 5000].
+-104 <= Node.val <= 104<br>
 
 ## Idea
 Just do while loop and convert to decimal
