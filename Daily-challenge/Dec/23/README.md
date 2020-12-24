@@ -1,58 +1,47 @@
-# House Robber III
-The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the "root." Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that "all houses in this place forms a binary tree". It will automatically contact the police if two directly-linked houses were broken into on the same night.
+# Next Greater Element III
 
-Determine the maximum amount of money the thief can rob tonight without alerting the police.
+Solution
+Given a positive integer n, find the smallest integer which has exactly the same digits existing in the integer n and is greater in value than n. If no such positive integer exists, return -1.
+
+Note that the returned integer should fit in 32-bit integer, if there is a valid answer but it does not fit in 32-bit integer, return -1.
+
+ 
 
 Example 1:
 
-Input: [3,2,3,null,3,null,1]
-
-     3
-    / \
-   2   3
-    \   \ 
-     3   1
-
-Output: 7 
-Explanation: Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
+Input: n = 12
+Output: 21
 Example 2:
 
-Input: [3,4,5,1,3,null,1]
+Input: n = 21
+Output: -1
+ 
 
-     3
-    / \
-   4   5
-  / \   \ 
- 1   3   1
+Constraints:
 
-Output: 9
-Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.<br>
+1 <= n <= 231 - 1<br>
 
 ## Idea
 Just do while loop and convert to decimal
 
 ## Code
 ```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def rob(self, root: TreeNode) -> int:
-        if not root:
-            return 0
+    def nextGreaterElement(self, n: int) -> int:
+        digits = list(str(n))
+        i = len(digits) - 1
+        while i-1 >= 0 and digits[i] <= digits[i-1]:
+            i -= 1
+            
+        if i == 0: return -1
         
-        def helper(node):
-            if not node: 
-                return (0, 0)
-            l1, l2 = helper(node.left)
-            r1, r2 = helper(node.right)
-            
-            return (node.val + l2 + r2, max(l1, l2) + max(r1, r2))
-            
-            
-        return max(helper(root))
+        j = i
+        while j+1 < len(digits) and digits[j+1] > digits[i-1]:
+            j += 1
         
+        digits[i-1], digits[j] = digits[j], digits[i-1]
+        digits[i:] = digits[i:][::-1]
+        ret = int(''.join(digits))
+        
+        return ret if ret < 1<<31 else -1
 ```

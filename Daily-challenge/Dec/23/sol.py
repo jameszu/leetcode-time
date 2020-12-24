@@ -1,22 +1,18 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def rob(self, root: TreeNode) -> int:
-        if not root:
-            return 0
+    def nextGreaterElement(self, n: int) -> int:
+        digits = list(str(n))
+        i = len(digits) - 1
+        while i-1 >= 0 and digits[i] <= digits[i-1]:
+            i -= 1
+            
+        if i == 0: return -1
         
-        def helper(node):
-            if not node: 
-                return (0, 0)
-            l1, l2 = helper(node.left)
-            r1, r2 = helper(node.right)
-            
-            return (node.val + l2 + r2, max(l1, l2) + max(r1, r2))
-            
-            
-        return max(helper(root))
+        j = i
+        while j+1 < len(digits) and digits[j+1] > digits[i-1]:
+            j += 1
         
+        digits[i-1], digits[j] = digits[j], digits[i-1]
+        digits[i:] = digits[i:][::-1]
+        ret = int(''.join(digits))
+        
+        return ret if ret < 1<<31 else -1

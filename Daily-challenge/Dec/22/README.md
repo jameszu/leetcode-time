@@ -33,17 +33,20 @@ Just do while loop and convert to decimal
 
 ## Code
 ```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def uniqueMorseRepresentations(self, words: List[str]) -> int:
-        lst = {"a":".-","b":"-...","c":"-.-.","d":"-..","e":".","f":"..-.","g":"--.","h":"....","i":"..","j":".---","k":"-.-","l":".-..","m":"--","n":"-.","o":"---","p":".--.","q":"--.-","r":".-.","s":"...","t":"-","u":"..-","v":"...-","w":".--","x":"-..-","y":"-.--","z":"--.."}
-        final_lst = []
-        for word in words:
-            temp = ""
-            for letter in word:
-                temp += lst[letter]
-            
-            final_lst += [temp]
-            
-        res = len(set(final_lst))
-        return res
+    def isBalanced(self, root: TreeNode) -> bool:
+        def dfs(root):
+            if not root:
+                return 0, True
+            lefth, leftb = dfs(root.left)
+            righth, rightb = dfs(root.right)
+            return max(lefth, righth) + 1, abs(lefth - righth) <= 1 and leftb and rightb
+        
+        return dfs(root)[1]
 ```

@@ -1,24 +1,29 @@
-# Basic Calculator II
-Implement a basic calculator to evaluate a simple expression string.
+# Swap Nodes in Pairs
+Given a linked list, swap every two adjacent nodes and return its head.
 
-The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.
+You may not modify the values in the list's nodes. Only nodes itself may be changed.
+
+ 
 
 Example 1:
 
-Input: "3+2*2"
-Output: 7
+
+Input: head = [1,2,3,4]
+Output: [2,1,4,3]
 Example 2:
 
-Input: " 3/2 "
-Output: 1
+Input: head = []
+Output: []
 Example 3:
 
-Input: " 3+5 / 2 "
-Output: 5
-Note:
+Input: head = [1]
+Output: [1]
+ 
 
-You may assume that the given expression is always valid.
-Do not use the eval built-in library function.<br>
+Constraints:
+
+The number of nodes in the list is in the range [0, 100].
+0 <= Node.val <= 100.<br>
 
 ## Idea
 Just do while loop and convert to decimal
