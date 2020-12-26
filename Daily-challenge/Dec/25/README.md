@@ -1,32 +1,28 @@
-# Smallest Integer Divisible by K
-Given a positive integer K, you need to find the length of the smallest positive integer N such that N is divisible by K, and N only contains the digit 1.
+# Diagonal Traverse
 
-Return the length of N. If there is no such N, return -1.
-
-Note: N may not fit in a 64-bit signed integer.
+Solution
+Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image.
 
  
 
-Example 1:
+Example:
 
-Input: K = 1
-Output: 1
-Explanation: The smallest answer is N = 1, which has length 1.
-Example 2:
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
 
-Input: K = 2
-Output: -1
-Explanation: There is no such positive integer N divisible by 2.
-Example 3:
+Output:  [1,2,4,7,5,3,6,8,9]
 
-Input: K = 3
-Output: 3
-Explanation: The smallest answer is N = 111, which has length 3.
+Explanation:
+
  
 
-Constraints:
+Note:
 
-1 <= K <= 105<br>
+The total number of elements of the given matrix will not exceed 10,000.<br>
 
 ## Idea
 Just do while loop and convert to decimal
@@ -34,12 +30,35 @@ Just do while loop and convert to decimal
 ## Code
 ```python
 class Solution:
-    def smallestRepunitDivByK(self, K: int) -> int:
-        remainder = 0
-        for length_N in range(1,K+1):
-            remainder = (remainder*10+1) % K
-            if remainder == 0:
-                return length_N
-        return -1
+    def findDiagonalOrder(self, matrix: List[List[int]]) -> List[int]:
+        resp = []
+        if not len(matrix): return resp
+        m = len(matrix)
+        n = len(matrix[0])
+        i, j = 0, 0
+        while len(resp) < m * n:
+            # up-right
+            while i >= 0 and j < n:
+                resp.append(matrix[i][j])
+                i -= 1
+                j += 1
+            if j < n:
+                i += 1
+            else:
+                i += 2
+                j -= 1
+
+            # down-left
+            while j >= 0 and i < m:
+                resp.append(matrix[i][j])
+                i += 1
+                j -= 1
+            if i < m:
+                j += 1
+            else:
+                j += 2
+                i -= 1
+        
+        return resp
         
 ```
