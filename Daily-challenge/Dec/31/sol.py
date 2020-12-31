@@ -1,13 +1,29 @@
 class Solution:
-    def getSkyline(self, buildings):
-        events = sorted([(L, -H, R) for L, R, H in buildings] + list({(R, 0, None) for _, R, _ in buildings}))
-        res, hp = [[0, 0]], [(0, float("inf"))]
-        for x, negH, R in events:
-            while x >= hp[0][1]: 
-                heapq.heappop(hp)
-            if negH: 
-                heapq.heappush(hp, (negH, R))
-            if res[-1][1] + hp[0][0]: 
-                res += [x, -hp[0][0]],
-        return res[1:]
-        
+    def largestRectangleArea(self, height):
+        n = len(height)
+
+
+        left = [1] * n
+        right = [1] * n
+        max_rect = 0
+
+        for i in range(0, n):
+            j = i - 1
+            while j >= 0:
+                if height[j] >= height[i]:
+                    left[i] += left[j]
+                    j -= left[j]
+                else: break
+
+        for i in range(n - 1, -1, -1):
+            j = i + 1
+            while j < n:
+                if height[j] >= height[i]:
+                    right[i] += right[j]
+                    j += right[j]
+                else: break
+
+        for i in range(0, n):
+            max_rect = max(max_rect, height[i] * (left[i] + right[i] - 1))
+
+        return max_rect

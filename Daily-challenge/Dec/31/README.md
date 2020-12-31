@@ -1,40 +1,22 @@
-# Game of Life
-According to Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
-
-The board is made up of an m x n grid of cells, where each cell has an initial state: live (represented by a 1) or dead (represented by a 0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
-
-Any live cell with fewer than two live neighbors dies as if caused by under-population.
-Any live cell with two or three live neighbors lives on to the next generation.
-Any live cell with more than three live neighbors dies, as if by over-population.
-Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
-The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously. Given the current state of the m x n grid board, return the next state.
+# Largest Rectangle in Histogram
+Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
  
 
-Example 1:
 
+Above is a histogram where width of each bar is 1, given height = [2,1,5,6,2,3].
 
-Input: board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
-Output: [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
-Example 2:
-
-
-Input: board = [[1,1],[1,0]]
-Output: [[1,1],[1,1]]
  
 
-Constraints:
 
-m == board.length
-n == board[i].length
-1 <= m, n <= 25
-board[i][j] is 0 or 1.
+The largest rectangle is shown in the shaded area, which has area = 10 unit.
+
  
 
-Follow up:
+Example:
 
-Could you solve it in-place? Remember that the board needs to be updated simultaneously: You cannot update some cells first and then use their updated values to update other cells.
-In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches upon the border of the array (i.e., live cells reach the border). How would you address these problems?<br>
+Input: [2,1,5,6,2,3]
+Output: 10<br>
 
 ## Idea
 Just do while loop and convert to decimal
@@ -42,16 +24,33 @@ Just do while loop and convert to decimal
 ## Code
 ```python
 class Solution:
-    def getSkyline(self, buildings):
-        events = sorted([(L, -H, R) for L, R, H in buildings] + list({(R, 0, None) for _, R, _ in buildings}))
-        res, hp = [[0, 0]], [(0, float("inf"))]
-        for x, negH, R in events:
-            while x >= hp[0][1]: 
-                heapq.heappop(hp)
-            if negH: 
-                heapq.heappush(hp, (negH, R))
-            if res[-1][1] + hp[0][0]: 
-                res += [x, -hp[0][0]],
-        return res[1:]
+    def largestRectangleArea(self, height):
+        n = len(height)
+
+
+        left = [1] * n
+        right = [1] * n
+        max_rect = 0
+
+        for i in range(0, n):
+            j = i - 1
+            while j >= 0:
+                if height[j] >= height[i]:
+                    left[i] += left[j]
+                    j -= left[j]
+                else: break
+
+        for i in range(n - 1, -1, -1):
+            j = i + 1
+            while j < n:
+                if height[j] >= height[i]:
+                    right[i] += right[j]
+                    j += right[j]
+                else: break
+
+        for i in range(0, n):
+            max_rect = max(max_rect, height[i] * (left[i] + right[i] - 1))
+
+        return max_rect
         
 ```
