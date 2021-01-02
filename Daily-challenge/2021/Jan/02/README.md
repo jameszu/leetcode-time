@@ -1,19 +1,49 @@
-# Linked List Random Node
-Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.
+# Find a Corresponding Node of a Binary Tree in a Clone of That Tree
+Given two binary trees original and cloned and given a reference to a node target in the original tree.
 
-Follow up:
-What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?
+The cloned tree is a copy of the original tree.
 
-Example:
+Return a reference to the same node in the cloned tree.
 
-// Init a singly linked list [1,2,3].
-ListNode head = new ListNode(1);
-head.next = new ListNode(2);
-head.next.next = new ListNode(3);
-Solution solution = new Solution(head);
+Note that you are not allowed to change any of the two trees or the target node and the answer must be a reference to a node in the cloned tree.
 
-// getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
-solution.getRandom(); <br>
+Follow up: Solve the problem if repeated values on the tree are allowed.
+
+ 
+
+Example 1:
+
+
+Input: tree = [7,4,3,null,null,6,19], target = 3
+Output: 3
+Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
+Example 2:
+
+
+Input: tree = [7], target =  7
+Output: 7
+Example 3:
+
+
+Input: tree = [8,null,6,null,5,null,4,null,3,null,2,null,1], target = 4
+Output: 4
+Example 4:
+
+
+Input: tree = [1,2,3,4,5,6,7,8,9,10], target = 5
+Output: 5
+Example 5:
+
+
+Input: tree = [1,2,null,3], target = 2
+Output: 2
+ 
+
+Constraints:
+
+The number of nodes in the tree is in the range [1, 10^4].
+The values of the nodes of the tree are unique.
+target node is a node from the original tree and is not null.<br>
 
 ## Idea
 two ways, one is to use a list and cheat, or we can use standard while loop and extra space for the dummy nodes and etc.
