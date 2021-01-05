@@ -1,21 +1,22 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        i = 0
-        lenz = len(flowerbed)
-        count = 0
-        
-        while i < lenz and count < n:
-            if flowerbed[i] == 0:
-                if i == lenz - 1: 
-                    nex = 0 
-                else: nex = flowerbed[i+1]
-                if i == 0: 
-                    prev = 0 
-                else: 
-                    prev = flowerbed[i-1]
-                if nex == 0 and prev == 0:
-                    flowerbed[i] = 1
-                    count += 1
-                    
-            i += 1
-        return count == n
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        dummy = ListNode(0);  
+        dummy.next = head 
+
+        pre = dummy           
+        cur = head
+        while cur:
+            if cur.next and cur.val == cur.next.val:
+                while cur and cur.next and cur.val == cur.next.val:
+                    cur = cur.next
+                pre.next = cur.next  
+                                     
+            else:
+                pre = pre.next 
+            cur = cur.next
+        return dummy.next

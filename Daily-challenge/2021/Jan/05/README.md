@@ -1,51 +1,49 @@
-# Can Place Flowers
-
-Solution
-You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
-
-Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule.
+# Remove Duplicates from Sorted List II
+Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well.
 
  
 
 Example 1:
 
-Input: flowerbed = [1,0,0,0,1], n = 1
-Output: true
+
+Input: head = [1,2,3,3,4,4,5]
+Output: [1,2,5]
 Example 2:
 
-Input: flowerbed = [1,0,0,0,1], n = 2
-Output: false
+
+Input: head = [1,1,1,2,3]
+Output: [2,3]
  
 
 Constraints:
 
-1 <= flowerbed.length <= 2 * 104
-flowerbed[i] is 0 or 1.
-There are no two adjacent flowers in flowerbed.
-0 <= n <= flowerbed.length<br>
+The number of nodes in the list is in the range [0, 300].
+-100 <= Node.val <= 100
+The list is guaranteed to be sorted in ascending order.<br>
 ## Idea
 It is really intestring, it is not a good question. THere is a very very simple solution but u need to be really abstract
 ## Code
 ```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        i = 0
-        lenz = len(flowerbed)
-        count = 0
-        
-        while i < lenz and count < n:
-            if flowerbed[i] == 0:
-                if i == lenz - 1: 
-                    nex = 0 
-                else: nex = flowerbed[i+1]
-                if i == 0: 
-                    prev = 0 
-                else: 
-                    prev = flowerbed[i-1]
-                if nex == 0 and prev == 0:
-                    flowerbed[i] = 1
-                    count += 1
-                    
-            i += 1
-        return count == n
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        dummy = ListNode(0);  
+        dummy.next = head 
+
+        pre = dummy           
+        cur = head
+        while cur:
+            if cur.next and cur.val == cur.next.val:
+                while cur and cur.next and cur.val == cur.next.val:
+                    cur = cur.next
+                pre.next = cur.next  
+                                     
+            else:
+                pre = pre.next 
+            cur = cur.next
+        return dummy.next
 ```

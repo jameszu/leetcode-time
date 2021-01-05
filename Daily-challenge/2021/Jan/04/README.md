@@ -1,56 +1,52 @@
-# The kth Factor of n
-Given two positive integers n and k.
+# Merge Two Sorted Lists
 
-A factor of an integer n is defined as an integer i where n % i == 0.
-
-Consider a list of all factors of n sorted in ascending order, return the kth factor in this list or return -1 if n has less than k factors.
+Solution
+Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
 
  
 
 Example 1:
 
-Input: n = 12, k = 3
-Output: 3
-Explanation: Factors list is [1, 2, 3, 4, 6, 12], the 3rd factor is 3.
+
+Input: l1 = [1,2,4], l2 = [1,3,4]
+Output: [1,1,2,3,4,4]
 Example 2:
 
-Input: n = 7, k = 2
-Output: 7
-Explanation: Factors list is [1, 7], the 2nd factor is 7.
+Input: l1 = [], l2 = []
+Output: []
 Example 3:
 
-Input: n = 4, k = 4
-Output: -1
-Explanation: Factors list is [1, 2, 4], there is only 3 factors. We should return -1.
-Example 4:
-
-Input: n = 1, k = 1
-Output: 1
-Explanation: Factors list is [1], the 1st factor is 1.
-Example 5:
-
-Input: n = 1000, k = 3
-Output: 4
-Explanation: Factors list is [1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000].
+Input: l1 = [], l2 = [0]
+Output: [0]
  
 
 Constraints:
 
-1 <= k <= n <= 1000 <br>
+The number of nodes in both lists is in the range [0, 50].
+-100 <= Node.val <= 100
+Both l1 and l2 are sorted in non-decreasing order. <br>
 
 ## Idea
 It is a really really hard one for me
 
 ## Code
 ```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def kthFactor(self, n: int, k: int) -> int:
-        lst = []
-        
-        for i in range(1, n+1):
-            if n % i == 0:
-                lst += [i]
-        if len(lst) < k:
-            return -1
-        return lst[k-1]
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummny = cur = ListNode(0)
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        cur.next = l1 or l2
+        return dummny.next
 ```
