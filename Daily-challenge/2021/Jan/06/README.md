@@ -1,37 +1,28 @@
-# Populating Next Right Pointers in Each Node II
-Given a binary tree
+# Kth Missing Positive Number
+Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
 
-struct Node {
-  int val;
-  Node *left;
-  Node *right;
-  Node *next;
-}
-Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+Find the kth positive integer that is missing from this array.
 
-Initially, all next pointers are set to NULL.
-
- 
-
-Follow up:
-
-You may only use constant extra space.
-Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
  
 
 Example 1:
 
+Input: arr = [2,3,4,7,11], k = 5
+Output: 9
+Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+Example 2:
 
-
-Input: root = [1,2,3,4,5,null,7]
-Output: [1,#,2,3,#,4,5,7,#]
-Explanation: Given the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
+Input: arr = [1,2,3,4], k = 2
+Output: 6
+Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.
  
 
 Constraints:
 
-The number of nodes in the given tree is less than 6000.
--100 <= node.val <= 100 <br>
+1 <= arr.length <= 1000
+1 <= arr[i] <= 1000
+1 <= k <= 1000
+arr[i] < arr[j] for 1 <= i < j <= arr.length<br>
 
 ## Idea
 yea ill ttyl
