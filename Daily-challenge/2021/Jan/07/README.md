@@ -1,37 +1,54 @@
-# Spiral Matrix II
-Given a positive integer n, generate an n x n matrix filled with elements from 1 to n2 in spiral order.
+# Longest Substring Without Repeating Characters
 
-![idk](https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg)
+Solution
+Given a string s, find the length of the longest substring without repeating characters.
+
+ 
 
 Example 1:
 
-
-Input: n = 3
-Output: [[1,2,3],[8,9,4],[7,6,5]]
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
 Example 2:
 
-Input: n = 1
-Output: [[1]]
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+Example 4:
+
+Input: s = ""
+Output: 0
  
 
 Constraints:
 
-1 <= n <= 20<br>
+0 <= s.length <= 5 * 104
+s consists of English letters, digits, symbols and spaces.<br>
 
 ## Idea
 
 ## Code
 ```python
 class Solution:
-    def generateMatrix(self, n: int) -> List[List[int]]:
-        A = [[0] * n for _ in range(n)]
-        i, j, di, dj = 0, 0, 0, 1
-        for k in range(n*n):
-            A[i][j] = k + 1
-            if A[(i+di)%n][(j+dj)%n]:
-                di, dj = dj, -di
-            i += di
-            j += dj
-        return A
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        i = j = 0
+        used = {}
+        for idx in range(len(s)):
+            if s[idx] in used and i <= used[s[idx]]:
+                i = used[s[idx]] + 1
+                
+            else:
+                j = max(j, idx - i + 1)
+                
+            used[s[idx]] = idx
+            
+        return j
         
 ```
