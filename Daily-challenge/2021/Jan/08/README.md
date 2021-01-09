@@ -1,47 +1,50 @@
-# Pairs of Songs With Total Durations Divisible by 60
-You are given a list of songs where the ith song has a duration of time[i] seconds.
+# Check If Two String Arrays are Equivalent
 
-Return the number of pairs of songs for which their total duration in seconds is divisible by 60. Formally, we want the number of indices i, j such that i < j with (time[i] + time[j]) % 60 == 0.
+Solution
+Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
+
+A string is represented by an array if the array elements concatenated in order forms the string.
 
  
 
 Example 1:
 
-Input: time = [30,20,150,100,40]
-Output: 3
-Explanation: Three pairs have a total duration divisible by 60:
-(time[0] = 30, time[2] = 150): total duration 180
-(time[1] = 20, time[3] = 100): total duration 120
-(time[1] = 20, time[4] = 40): total duration 60
+Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+Output: true
+Explanation:
+word1 represents string "ab" + "c" -> "abc"
+word2 represents string "a" + "bc" -> "abc"
+The strings are the same, so return true.
 Example 2:
 
-Input: time = [60,60,60]
-Output: 3
-Explanation: All three pairs have a total duration of 120, which is divisible by 60.
+Input: word1 = ["a", "cb"], word2 = ["ab", "c"]
+Output: false
+Example 3:
+
+Input: word1  = ["abc", "d", "defg"], word2 = ["abcddefg"]
+Output: true
  
 
 Constraints:
 
-1 <= time.length <= 6 * 104
-1 <= time[i] <= 500 <br>
+1 <= word1.length, word2.length <= 103
+1 <= word1[i].length, word2[i].length <= 103
+1 <= sum(word1[i].length), sum(word2[i].length) <= 103
+word1[i] and word2[i] consist of lowercase letters.<br>
 
 ## Idea
 
 ## Code
 ```python
 class Solution:
-    def numPairsDivisibleBy60(self, time: List[int]) -> int:
-       
-        count = 0
-        d = collections.defaultdict(int)
-
+    def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
+        t1 = ""
+        t2 = ""
+        for i in word1:
+            t1 += i
             
-        for item in time:
-            if item % 60 == 0:
-                count += d[0]
-            else:
-                count += d[60-item%60]
-            d[item%60] += 1
-                
-        return count
+        for j in word2:
+            t2 += j
+            
+        return t1 == t2
 ```
